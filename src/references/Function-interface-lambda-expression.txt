@@ -1,0 +1,12 @@
+https://www.infoq.com/articles/Java-8-Lambdas-A-Peek-Under-the-Hood
+
+
+
+If lambdas were translated to anonymous inner classes, you’d have one new class file for each lambda. 
+As each anonymous inner class would be loaded it would take up room in the JVM’s meta-space (which is
+ the Java 8 replacement for the Permanent Generation). If the code inside each such anonymous inner 
+ class is compiled to machine code by the JVM, it would be stored inside a code cache. In addition, 
+ these anonymous inner classes would be instantiated into separate objects. As a consequence, 
+ anonymous inner classes would increase the memory consumption of your application. It is potentially 
+ helpful to introduce a caching mechanism in order to reduce all of this memory overhead, which 
+ motivates the introduction of some kind of abstraction layer.
