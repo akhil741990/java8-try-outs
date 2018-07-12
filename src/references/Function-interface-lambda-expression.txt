@@ -10,3 +10,16 @@ As each anonymous inner class would be loaded it would take up room in the JVMâ€
  anonymous inner classes would increase the memory consumption of your application. It is potentially 
  helpful to introduce a caching mechanism in order to reduce all of this memory overhead, which 
  motivates the introduction of some kind of abstraction layer.
+ 
+ 
+ 
+ Lambdas and invokedynamic
+
+To address the concerns explained in the previous section, the Java language and JVM engineers decided to defer the
+selection of a translation strategy until run time.
+ The new invokedynamic bytecode instruction introduced with Java 7 gave them a mechanism to achieve this in an efficient way. 
+ The translation of a lambda expression to bytecode is performed in two steps:
+
+1 ) generate an invokedynamic call site (called lambda factory), which when invoked returns an instance of the Functional Interface to 
+   which the lambda is being converted;
+2) convert the body of the lambda expression into a method that will be invoked through the invokedynamic instruction.
