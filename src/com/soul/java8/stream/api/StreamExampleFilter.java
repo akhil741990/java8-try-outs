@@ -25,9 +25,16 @@ public class StreamExampleFilter {
 		
 		names.stream().forEach(x -> System.out.println(x));
 		
+		// Reduce
 		Integer result = numList.stream().filter(e -> e > 90).reduce(0, Integer::sum);
 		
-		System.out.print("Sum :" + result);
+		System.out.println("Sum :" + result);
+		
+		//Joining 
+		String joining = numList.stream().filter(x -> x > 90).map(x ->findById(x)).collect(Collectors.joining(" $ "));
+		
+		System.out.println("joining : " + joining);
+		
 	}
 
 	public static String findById(Integer id){
