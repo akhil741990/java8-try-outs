@@ -12,7 +12,7 @@ public class StreamExampleFilter {
 	static Map<Integer,String> map = new HashMap<Integer, String>();
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Map<Integer,String> map = new HashMap<Integer, String>();
+		//Map<Integer,String> map = new HashMap<Integer, String>();
 		
 		
 		List<Integer> numList = new ArrayList<>();
@@ -21,9 +21,13 @@ public class StreamExampleFilter {
 			map.put(i, "EMP_"+i);
 		}
 		
-		List<String> names = numList.stream().filter(e -> e > 90).map(x -> map.get(x)).collect(Collectors.toList());
+		List<String> names = numList.stream().filter(e -> e > 90).map(x ->findById(x)).collect(Collectors.toList());
 		
 		names.stream().forEach(x -> System.out.println(x));
+		
+		Integer result = numList.stream().filter(e -> e > 90).reduce(0, Integer::sum);
+		
+		System.out.print("Sum :" + result);
 	}
 
 	public static String findById(Integer id){
